@@ -1,8 +1,8 @@
-import Notes from "./components/Notes"
+import Movie from "./components/Movie"
 function App() {
   return (
     <div>
-      <Notes />
+      <Movie />
     </div>
   )
 }

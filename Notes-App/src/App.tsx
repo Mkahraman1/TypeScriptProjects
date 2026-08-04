@@ -1,19 +1,13 @@
-import { Routes, Route } from "react-router-dom"
-import Home from "./pages/Home"
-import About from "./pages/About"
-import Products from "./pages/Products"
-import ProductDetail from "./pages/ProductDetail"
-import Navbar from "./components/Navbar"
+import Users from './components/Users'
+import UserDetail from './components/UserDetail'
 
+import {Routes,Route} from 'react-router-dom'
 function App() {
   return (
-    <div>
-      <Navbar />
+    <div> 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:id" element={<ProductDetail />} />
+        <Route path='/' element={<Users/>}></Route>
+        <Route path='/users/:id' element={<UserDetail/>}></Route>
       </Routes>
     </div>
   )

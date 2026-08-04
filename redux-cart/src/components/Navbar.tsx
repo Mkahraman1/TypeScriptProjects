@@ -1,16 +1,28 @@
+import Container from "@mui/material/Container"
 import Stack from "@mui/material/Stack"
 import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
-import Container from "@mui/material/Container"
+import Box from "@mui/material/Box"
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 
 import { Link } from "react-router-dom"
+import { useSelector } from "react-redux"
+
+import type { RootState } from "../redux/store"
 
 function Navbar() {
+  const items = useSelector((state: RootState) => state.cart.items)
+
+  const toplamUrun = items.reduce(
+    (toplam, item) => toplam + item.quantity,
+    0
+  )
+
   return (
-    <Stack
+    <Box
       sx={{
-        backgroundColor: "black",
-        py: 2,
+        backgroundColor: "#212121",
+        borderBottom: "1px solid #424242",
       }}
     >
       <Container maxWidth="lg">
@@ -19,6 +31,7 @@ function Navbar() {
           sx={{
             justifyContent: "space-between",
             alignItems: "center",
+            py: 2,
           }}
         >
           <Typography
@@ -28,37 +41,34 @@ function Navbar() {
               fontWeight: "bold",
             }}
           >
-            Router Practice
+            Redux Shop
           </Typography>
 
           <Stack direction="row" spacing={1}>
             <Button
               component={Link}
               to="/"
-              sx={{ color: "white" }}
+              sx={{
+                color: "white",
+              }}
             >
-              Home
+              Ürünler
             </Button>
 
             <Button
               component={Link}
-              to="/about"
-              sx={{ color: "white" }}
+              to="/cart"
+              startIcon={<ShoppingCartIcon />}
+              sx={{
+                color: "white",
+              }}
             >
-              About
-            </Button>
-
-            <Button
-              component={Link}
-              to="/products"
-              sx={{ color: "white" }}
-            >
-              Products
+              Sepet ({toplamUrun})
             </Button>
           </Stack>
         </Stack>
       </Container>
-    </Stack>
+    </Box>
   )
 }
 
